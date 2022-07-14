@@ -31,3 +31,12 @@ A parte da API é introduzida quando vamos responder o app: uma requisição é 
 e liberamos a porta.
 
 Iremos definir melhor alguns objetivos pra que possamos separar melhor as tarefas durante o trabalho.
+
+
+## Observações
+
+Antes de executar o programa, copie o .env.example e o renomeie-o para .env. Após isso poderá rodar o projeto utilizando o comando:
+
+```
+go run .
+```
