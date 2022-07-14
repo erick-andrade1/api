@@ -3,8 +3,7 @@
 ## Definição
 
 Vamos dividir a API em duas partes: conexão device-server e autenticação usando OAuth.
-A conexão device-server (usando Websockets) é feita para que a transferência do token seja feita de forma segura (já que não podemos)
-garantir isso por outros motivos.
+A conexão device-server (Utilizando uma biblioteca que assegure o envio do dado apenas pelo servidor) é feita para que a transferência do token seja feita de forma segura (já que não podemos) garantir isso por outros motivos.
 
 Graficamente falando, temos isso:
 
