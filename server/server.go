@@ -26,6 +26,8 @@ func Run() {
 		log.Fatal("Error loading .env file")
 	}
 	port := os.Getenv("PORT")
+	var googleClientID string = os.Getenv("GOOGLE_CLIENT_ID")
+	var googleClientSecret string = os.Getenv("GOOGLE_CLIENT_SECRET")
 
 	server := Server{port, router.AddRoutes()}
 
@@ -42,7 +44,7 @@ func Run() {
 	gothic.Store = store
 
 	goth.UseProviders(
-		google.New("22694295793-ehrsjv1n04aa6i90hi7432gqkmb8s9kj.apps.googleusercontent.com", "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", "http://localhost:3000/auth/google/callback", "email", "profile"),
+		google.New(googleClientID, googleClientSecret, "http://localhost:3000/auth/google/callback", "email", "profile"),
 	)
 
 	fmt.Println("Server running on PORT:", server.port)
