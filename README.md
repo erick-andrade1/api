@@ -35,7 +35,10 @@ Iremos definir melhor alguns objetivos pra que possamos separar melhor as tarefa
 
 ## Observações
 
-Antes de executar o programa, copie o .env.example e o renomeie-o para .env. Após isso poderá rodar o projeto utilizando o comando:
+Antes de executar o programa, copie o .env.example e o renomeie-o para .env. 
+Também é necessário preencher as variáveis de ambiente do .env para que a API funcione corretamente, assim como o oAuth do google.
+
+Após isso poderá rodar o projeto utilizando o comando:
 
 ```
 go run .
