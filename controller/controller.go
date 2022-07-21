@@ -1,11 +1,28 @@
 package controller
 
-import "net/http"
+import (
+	"fmt"
+	"net/http"
+	"text/template"
 
-func LoginHandler(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hello, logged in!"))
+	"github.com/markbates/goth/gothic"
+)
+
+func LoginHandler(res http.ResponseWriter, req *http.Request) {
+	user, err := gothic.CompleteUserAuth(res, req)
+	if err != nil {
+		fmt.Fprintln(res, err)
+		return
+	}
+	t, _ := template.ParseFiles("templates/success.html")
+	t.Execute(res, user)
 }
 
-func TestHandler(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hello, testing!"))
+func AuthHandler(res http.ResponseWriter, req *http.Request) {
+	gothic.BeginAuthHandler(res, req)
+}
+
+func IndexRoute(res http.ResponseWriter, req *http.Request) {
+	t, _ := template.ParseFiles("templates/index.html")
+	t.Execute(res, false)
 }
