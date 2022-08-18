@@ -11,7 +11,7 @@
 
 
     <script>
-        let socket = new WebSocket("ws://localhost:8001/ws");
+        let socket = new WebSocket("ws://localhost:8001/ws/get");
         console.log("Tentando conexão com websocket");
 
         socket.onopen = () => {
@@ -24,7 +24,7 @@
         }
 
         socket.onmessage = (message) => {
-            console.log("Mensagem: ", message);
+            console.log("Mensagem: ", message.data);
         }
 
         socket.onerror = (error) => {
