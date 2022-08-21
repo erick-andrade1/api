@@ -11,8 +11,8 @@ import (
 	"github.com/dami-pie/api/responses"
 )
 
-var token struct {
-	Token string
+type jsonToken struct {
+	Token string `json:"token"`
 }
 
 func Login(res http.ResponseWriter, req *http.Request) {
@@ -43,8 +43,11 @@ func Login(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
+	// Apenas formata o json bonitinho:
+	userToken := jsonToken{Token: token}
+
 	// Devolve o token gerado
-	responses.JSON(res, http.StatusAccepted, token)
+	responses.JSON(res, http.StatusAccepted, userToken)
 }
 
 func AuthOTP(res http.ResponseWriter, req *http.Request) {
