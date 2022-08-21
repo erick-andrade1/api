@@ -6,6 +6,9 @@ require github.com/go-chi/chi v1.5.4
 
 require (
 	cloud.google.com/go v0.67.0 // indirect
+	github.com/badoux/checkmail v1.2.1 // indirect
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
+	github.com/dgrijalva/jwt-go/v4 v4.0.0-preview1 // indirect
 	github.com/go-chi/chi/v5 v5.0.7 // indirect
 	github.com/golang/protobuf v1.4.2 // indirect
 	github.com/gorilla/context v1.1.1 // indirect

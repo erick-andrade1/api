@@ -3,6 +3,7 @@ package route
 import (
 	"net/http"
 
+	"github.com/dami-pie/api/middlewares"
 	"github.com/gorilla/mux"
 )
 
@@ -15,10 +16,15 @@ type Route struct {
 
 // Configurar coloca todas as rotas dentro do router
 func ConfigRoutes(r *mux.Router) *mux.Router {
-	routes := routeGoogleAuth
+	routes := apiRoutes
 
 	for _, route := range routes {
-		r.HandleFunc(route.URI, route.Funcao).Methods(route.Metodo)
+		if route.RequerAutenticacao {
+			r.HandleFunc(route.URI, middlewares.Logger(middlewares.AuthenticateUser(route.Funcao))).Methods(route.Metodo)
+		} else {
+			r.HandleFunc(route.URI, middlewares.Logger(route.Funcao)).Methods(route.Metodo)
+		}
+
 	}
 
 	return r
