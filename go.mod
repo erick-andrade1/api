@@ -2,24 +2,11 @@ module github.com/dami-pie/api
 
 go 1.18
 
-require github.com/go-chi/chi v1.5.4
-
 require (
-	cloud.google.com/go v0.67.0 // indirect
-	github.com/badoux/checkmail v1.2.1 // indirect
-	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
-	github.com/dgrijalva/jwt-go/v4 v4.0.0-preview1 // indirect
-	github.com/go-chi/chi/v5 v5.0.7 // indirect
-	github.com/golang/protobuf v1.4.2 // indirect
-	github.com/gorilla/context v1.1.1 // indirect
-	github.com/gorilla/mux v1.8.0 // indirect
-	github.com/gorilla/securecookie v1.1.1 // indirect
-	github.com/gorilla/sessions v1.2.1 // indirect
-	github.com/gorilla/websocket v1.5.0 // indirect
-	github.com/joho/godotenv v1.4.0 // indirect
-	github.com/markbates/goth v1.73.0 // indirect
-	golang.org/x/net v0.0.0-20211112202133-69e39bad7dc2 // indirect
-	golang.org/x/oauth2 v0.0.0-20200902213428-5d25da1a8d43 // indirect
-	google.golang.org/appengine v1.6.6 // indirect
-	google.golang.org/protobuf v1.25.0 // indirect
+	github.com/badoux/checkmail v1.2.1
+	github.com/dgrijalva/jwt-go/v4 v4.0.0-preview1
+	github.com/gorilla/mux v1.8.0
+	github.com/joho/godotenv v1.4.0
 )
+
+require golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect

@@ -21,5 +21,5 @@ func Run() {
 	server := Server{config.Port, router.AddRoutes()}
 
 	fmt.Println("Server running on PORT:", server.port)
-	log.Fatal(http.ListenAndServe(server.port, server.routes))
+	log.Fatal(http.ListenAndServeTLS(server.port, "certs/fullchain.pem", "certs/privkey.pem", server.routes))
 }
