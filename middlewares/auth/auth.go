@@ -20,7 +20,7 @@ func GenerateToken(userEmail string) (string, error) {
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, permissions)
 
-	return token.SignedString([]byte(config.SecretKey))
+	return token.SignedString([]byte(config.JWTKey))
 }
 
 func ValidateToken(req *http.Request) error {
@@ -74,5 +74,5 @@ func returnVerificationKey(token *jwt.Token) (interface{}, error) {
 	if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 		return nil, fmt.Errorf("Método de assinatura inesperado! %v", token.Header["alg"])
 	}
-	return config.SecretKey, nil
+	return config.JWTKey, nil
 }

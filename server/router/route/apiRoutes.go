@@ -15,7 +15,7 @@ var apiRoutes = []Route{
 	},
 	{
 		URI:                "/",
-		Metodo:             http.MethodGet,
+		Metodo:             http.MethodPost,
 		Funcao:             controller.AuthOTP,
 		RequerAutenticacao: true,
 	},

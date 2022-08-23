@@ -10,7 +10,8 @@ import (
 var (
 	StringConexaoBanco = ""
 	Port               = ""
-	SecretKey          []byte
+	JWTKey             []byte
+	OTPKey             = ""
 )
 
 func LoadApiConfig() {
@@ -19,5 +20,6 @@ func LoadApiConfig() {
 		log.Fatal("Error loading .env file")
 	}
 	Port = os.Getenv("PORT")
-	SecretKey = []byte(os.Getenv("SECRET_KEY"))
+	JWTKey = []byte(os.Getenv("JWT_SECRET"))
+	OTPKey = os.Getenv("OTP_SECRET")
 }

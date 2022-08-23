@@ -2,7 +2,6 @@ package controller
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -51,10 +50,29 @@ func Login(res http.ResponseWriter, req *http.Request) {
 }
 
 func AuthOTP(res http.ResponseWriter, req *http.Request) {
-	email, erro := auth.ExtractUserEmail(req)
+	_, erro := auth.ExtractUserEmail(req)
 	if erro != nil {
 		responses.Erro(res, http.StatusUnauthorized, erro)
 	}
 
-	fmt.Println("\n Email: ", email)
+	body, erro := ioutil.ReadAll(req.Body)
+	if body == nil {
+		responses.Erro(res, http.StatusUnprocessableEntity, erro)
+		return
+	}
+
+	var otp models.OTP
+	if erro := json.Unmarshal(body, &otp); erro != nil {
+		responses.Erro(res, http.StatusUnprocessableEntity, erro)
+		return
+	}
+
+	if isValid, erro := otp.ValidateKey(); !isValid {
+		responses.Erro(res, http.StatusUnauthorized, erro)
+		return
+	}
+
+	//TODO: Precisamos guardar o email e o tempo da entrada do usuário. Isso vai ser implementado junto com o banco.
+	//TODO: Precisamos implementar o envio do sinal de abertura para o device.
+
 }
