@@ -24,8 +24,7 @@ func Run() {
 	fmt.Println("Server running on PORT:", server.port)
 
 	c := cors.New(cors.Options{
-		AllowedOrigins: []string{"*"},   // All origins
-		AllowedMethods: []string{"GET"}, // Allowing only get, just an example
+		AllowedOrigins: []string{"*"}, // All origins
 	})
 
 	log.Fatal(http.ListenAndServeTLS(server.port, "certs/fullchain.pem", "certs/privkey.pem", c.Handler(server.routes)))
