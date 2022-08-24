@@ -8,6 +8,7 @@ import (
 	"github.com/dami-pie/api/config"
 	"github.com/dami-pie/api/server/router"
 	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 )
 
 type Server struct {
@@ -21,5 +22,11 @@ func Run() {
 	server := Server{config.Port, router.AddRoutes()}
 
 	fmt.Println("Server running on PORT:", server.port)
-	log.Fatal(http.ListenAndServeTLS(server.port, "certs/fullchain.pem", "certs/privkey.pem", server.routes))
+
+	c := cors.New(cors.Options{
+		AllowedOrigins: []string{"*"},   // All origins
+		AllowedMethods: []string{"GET"}, // Allowing only get, just an example
+	})
+
+	log.Fatal(http.ListenAndServeTLS(server.port, "certs/fullchain.pem", "certs/privkey.pem", c.Handler(server.routes)))
 }
