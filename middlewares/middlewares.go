@@ -12,7 +12,6 @@ import (
 func Logger(next http.HandlerFunc) http.HandlerFunc {
 	return func(res http.ResponseWriter, req *http.Request) {
 		fmt.Printf("\n %s %s %s", req.Method, req.RequestURI, req.Host)
-		res.Header().Add("Content-Type", "application/json")
 		next(res, req)
 	}
 }
