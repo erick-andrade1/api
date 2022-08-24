@@ -1,10 +1,12 @@
 package controller
 
 import (
+	"bytes"
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
 
+	"github.com/dami-pie/api/config"
 	"github.com/dami-pie/api/middlewares/auth"
 	"github.com/dami-pie/api/models"
 	"github.com/dami-pie/api/responses"
@@ -70,9 +72,18 @@ func AuthOTP(res http.ResponseWriter, req *http.Request) {
 	if isValid, erro := otp.ValidateKey(); !isValid {
 		responses.Erro(res, http.StatusUnauthorized, erro)
 		return
+	} else {
+		sendOpenCommand()
 	}
 
 	//TODO: Precisamos guardar o email e o tempo da entrada do usuário. Isso vai ser implementado junto com o banco.
-	//TODO: Precisamos implementar o envio do sinal de abertura para o device.
+}
 
+func sendOpenCommand() {
+	body, _ := json.Marshal(map[string]any{
+		"hash": config.OTPKey,
+		"open": true,
+	})
+	payload := bytes.NewBuffer(body)
+	http.Post(config.Device, "application/json", payload)
 }

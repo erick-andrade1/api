@@ -12,6 +12,7 @@ var (
 	Port               = ""
 	JWTKey             []byte
 	OTPKey             = ""
+	Device             = ""
 )
 
 func LoadApiConfig() {
@@ -22,4 +23,5 @@ func LoadApiConfig() {
 	Port = os.Getenv("PORT")
 	JWTKey = []byte(os.Getenv("JWT_SECRET"))
 	OTPKey = os.Getenv("OTP_SECRET")
+	Device = os.Getenv("DEVICE")
 }
